@@ -10,6 +10,8 @@ class GuessActor extends React.Component {
         this.dequeue = this.dequeue.bind(this);
         this.checkFull = this.checkFull.bind(this);
         this.checkEmpty = this.checkEmpty.bind(this);
+        this.increaseScore = this.increaseScore.bind(this);
+        this.resetScore = this.resetScore.bind(this);
     }
 
     // queue functions
@@ -46,12 +48,32 @@ class GuessActor extends React.Component {
         }
     }
 
+    increaseScore() {
+        var currentScore = this.state.score;
+        currentScore += 1;
+        this.setState({ score: currentScore});
+    }
+
+    resetScore() {
+        var currentScore = this.state.score;
+        currentScore = 0;
+        this.setState({ score: currentScore});
+    }
 
     render() {
         return(
             <div>
                 <h1>Guess Actor page</h1>
-                <GAQuestion enqueue={this.enqueue} dequeue={this.dequeue} checkEmpty={this.checkEmpty} checkFull={this.checkFull} queue={this.state.queue} gameOver={this.state.gameOver} score={this.state.score}/>
+                <GAQuestion 
+                    enqueue={this.enqueue} 
+                    dequeue={this.dequeue} 
+                    checkEmpty={this.checkEmpty} 
+                    checkFull={this.checkFull} 
+                    queue={this.state.queue} 
+                    gameOver={this.state.gameOver} 
+                    increaseScore={this.increaseScore}
+                    resetScore={this.resetScore}
+                    score={this.state.score} />
             </div>
         );
     }

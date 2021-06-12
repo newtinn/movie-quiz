@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 
 import GAContent from './GAContent';
 
@@ -12,6 +13,10 @@ class GAQuestion extends React.Component {
 
     // getting a question
     getQuestion() {
+        if (this.props.queue.length === 0) {
+            this.setState({ questionAvailable: false});
+        }
+
         fetch('http://localhost:5000/getActorAPI').then(res => res.json()).then(data => {
             this.props.enqueue(data);
             this.setState({ questionAvailable: true });
@@ -38,7 +43,18 @@ class GAQuestion extends React.Component {
                 <button onClick={this.getQuestion}>Add</button>
                 <button onClick={this.removeQuestion}>Remove</button>
                 <br/>
-                {this.state.questionAvailable ? <GAContent question={this.props.queue[0]} gameOver={this.props.gameOver} score={this.props.score} /> : <p>Loading...</p>}
+                <br/>
+                {this.state.questionAvailable ? <GAContent 
+                                                    question={this.props.queue[0]} 
+                                                    gameOver={this.props.gameOver} 
+                                                    increaseScore={this.props.increaseScore}
+                                                    resetScore={this.props.resetScore}
+                                                    removeQuestion={this.removeQuestion} 
+                                                    newQuestion={this.getQuestion} /> 
+                                                    : 
+                                                    <div class="spinner-border text-dark" role="status">
+                                                    </div>
+                                                    }
             </>
         )
     }

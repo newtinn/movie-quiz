@@ -8,11 +8,14 @@ class GAContent extends React.Component {
         super(props);
         this.state = { answered: false, correct: null };
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.nextQuestion = this.nextQuestion.bind(this);
     }
 
     checkAnswer() {
         var userAnswer = document.getElementById("userAnswer").value;
-        if (userAnswer === this.props.question.actor) {
+        userAnswer = userAnswer.trim();
+        if (userAnswer.toLowerCase() === this.props.question.actor.toLowerCase()) {
+            this.props.increaseScore();
             this.setState({correct: true});
         } else {
             this.setState({correct: false});
@@ -20,10 +23,22 @@ class GAContent extends React.Component {
         this.setState({answered: true});
     }
 
+    nextQuestion() {
+        this.setState({ answered: false, correct: null});
+    }
+
     render() {
         return(
             <>
-                {this.state.answered ? <GAQuestionAnswered correct={this.state.correct} /> : <GAQuestionDetails question={this.props.question} checkAnswer={this.checkAnswer} /> }
+                {this.state.answered ? 
+                    <GAQuestionAnswered 
+                        correct={this.state.correct} 
+                        answer={this.props.question.actor} 
+                        newQuestion={this.props.newQuestion} 
+                        removeQuestion={this.props.removeQuestion}
+                        resetScore={this.props.resetScore}
+                        nextQuestion={this.nextQuestion} /> : 
+                    <GAQuestionDetails question={this.props.question} checkAnswer={this.checkAnswer} /> }
             </>
         )
     }
