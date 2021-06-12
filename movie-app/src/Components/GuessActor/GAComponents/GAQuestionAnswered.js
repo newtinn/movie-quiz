@@ -1,10 +1,23 @@
 import React from 'react';
 
+import { AnimateOnChange } from 'react-animation';
+
 class GAQuestionAnswered extends React.Component {
     constructor(props) {
         super(props);
         this.nextRound = this.nextRound.bind(this);
         this.resetGame = this.resetGame.bind(this);
+        this.contentFadeOut = this.contentFadeOut.bind(this);
+    }
+
+    contentFadeOut() {
+        document.getElementById("content").className = "fade-out";
+        if (this.props.correct === true) {
+            this.nextRound();
+        }
+        if (this.props.correct === false) {
+            this.resetGame();
+        }
     }
 
     nextRound() {
@@ -27,16 +40,20 @@ class GAQuestionAnswered extends React.Component {
         if (this.props.correct === true) {
             return(
                 <>
-                    Correct!
-                    <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.nextRound} />
+                    <div class="fade-in" id="content">
+                        Correct!
+                        <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
+                    </div>
                 </>
             );
         }
         if (this.props.correct === false) {
             return(
                 <>
-                    Incorrect! The answer was {this.props.answer}.
-                    <input type="submit" value="Reset" class="btn btn-primary" onClick={this.resetGame} />
+                    <div class="fade-in" id="content">
+                        Incorrect! The answer was {this.props.answer}.
+                        <input type="submit" value="Reset" class="btn btn-primary" onClick={this.contentFadeOut} />
+                    </div>
                 </>
             );
         }

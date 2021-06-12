@@ -52,7 +52,9 @@ class GAQuestion extends React.Component {
                                                     removeQuestion={this.removeQuestion} 
                                                     newQuestion={this.getQuestion} /> 
                                                     : 
-                                                    <div class="spinner-border text-dark" role="status">
+                                                    <div class="fade-in">
+                                                        <div class="spinner-border text-dark" role="status">
+                                                        </div>
                                                     </div>
                                                     }
             </>

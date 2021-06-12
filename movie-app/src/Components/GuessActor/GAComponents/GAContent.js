@@ -30,6 +30,7 @@ class GAContent extends React.Component {
     render() {
         return(
             <>
+               
                 {this.state.answered ? 
                     <GAQuestionAnswered 
                         correct={this.state.correct} 
@@ -38,7 +39,8 @@ class GAContent extends React.Component {
                         removeQuestion={this.props.removeQuestion}
                         resetScore={this.props.resetScore}
                         nextQuestion={this.nextQuestion} /> : 
-                    <GAQuestionDetails question={this.props.question} checkAnswer={this.checkAnswer} /> }
+                    <GAQuestionDetails question={this.props.question} checkAnswer={this.checkAnswer} /> 
+                }
             </>
         )
     }
