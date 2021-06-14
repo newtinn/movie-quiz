@@ -41,8 +41,8 @@ class GAQuestionAnswered extends React.Component {
             return(
                 <>
                     <div class="fade-in" id="content">
-                        Correct!
-                        <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
+                        <h2>Correct!</h2>
+                        <br/><input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
                     </div>
                 </>
             );
@@ -51,8 +51,8 @@ class GAQuestionAnswered extends React.Component {
             return(
                 <>
                     <div class="fade-in" id="content">
-                        Incorrect! The answer was {this.props.answer}.
-                        <input type="submit" value="Reset" class="btn btn-primary" onClick={this.contentFadeOut} />
+                        <h2>Incorrect! The answer was {this.props.answer}.</h2>
+                        <br/><input type="submit" value="Reset" class="btn btn-primary" onClick={this.contentFadeOut} />
                     </div>
                 </>
             );
