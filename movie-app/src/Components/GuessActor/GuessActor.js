@@ -73,7 +73,8 @@ class GuessActor extends React.Component {
                     gameOver={this.state.gameOver} 
                     increaseScore={this.increaseScore}
                     resetScore={this.resetScore}
-                    score={this.state.score} />
+                    score={this.state.score} 
+                    controller={this.controller} />
             </div>
         );
     }

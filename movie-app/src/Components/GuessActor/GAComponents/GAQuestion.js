@@ -4,22 +4,26 @@ import { ClipLoader } from 'react-spinners';
 import GAContent from './GAContent';
 
 class GAQuestion extends React.Component {
+    _mounted = false;
+
     constructor(props) {
         super(props);
         this.getQuestion = this.getQuestion.bind(this);
         this.removeQuestion = this.removeQuestion.bind(this);
-        this.state = { questionAvailable: false };
+        this.state = { questionAvailable: false};
     }
 
     // getting a question
-    getQuestion() {
+    async getQuestion() {
         if (this.props.queue.length === 0) {
             this.setState({ questionAvailable: false});
         }
 
-        fetch('http://localhost:5000/getActorAPI').then(res => res.json()).then(data => {
-            this.props.enqueue(data);
-            this.setState({ questionAvailable: true });
+        await fetch('http://localhost:5000/getActorAPI').then(res => res.json()).then(data => {
+            if (this._mounted === true) {
+                this.props.enqueue(data);
+                this.setState({ questionAvailable: true });
+            }
         }).catch((error) => this.getQuestion());
     }
 
@@ -31,9 +35,17 @@ class GAQuestion extends React.Component {
     }
 
     componentDidMount() { // onload of the component
+        this._mounted = true;
         this.getQuestion();
         this.getQuestion();
         this.getQuestion();
+        return () => this.setState({_mounted: false});
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+        console.log(this._mounted);
+        console.log("changed page to home");
     }
 
     render() {
