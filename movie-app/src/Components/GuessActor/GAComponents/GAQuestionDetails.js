@@ -15,17 +15,17 @@ class GAQuestionDetails extends React.Component {
     render() {
         return(
             <>
-                <HideUntilLoaded animationIn="bounceIn" Spinner={()=> 
+                <HideUntilLoaded animationIn="fadeIn" durationIn="10000" Spinner={()=> 
                                                             
-                                                                <div class="spinner-border text-dark" role="status">
+                                                                <div class="spinner-border text-light" role="status">
                                                                 </div>
                                                             
                                                                 }>
                     <div id="content">
-                        <img src={this.props.question.cover} alt='' style={{maxHeight: "300px"}} class="img-fluid" />
-                        <h1>Who is this {this.props.question.sex}?</h1>
-                        <input type="text" id="userAnswer" />
-                        <br/><input type="submit" value="submit" onClick={this.fadeContentOut && this.props.checkAnswer} />
+                        <img src={this.props.question.cover} alt='' style={{maxHeight: "400px"}} class="img-fluid" />
+                        <h1 style={{paddingTop: "15px"}}>Who is this {this.props.question.sex}?</h1>
+                        <input type="text" id="userAnswer" className="text-line" placeholder="Type your answer here..." />
+                        <br/><br/><input type="submit" value="Submit" className="btn btn-primary" onClick={this.fadeContentOut && this.props.checkAnswer} />
                     </div>
                 </HideUntilLoaded>
             </>

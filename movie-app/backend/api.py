@@ -38,7 +38,7 @@ def getActor():
     movieSearch = ia.search_movie(pickedMovie)
     movieObject = movieSearch[0]
     movieRetreive = ia.get_movie(movieObject.movieID)
-    actor = movieRetreive['cast'][random.randint(0,4)]
+    actor = movieRetreive['cast'][random.randint(0,2)]
     '''for i in range(0, 4):
         print(movieRetreive['cast'][i])'''
     print(actor)

@@ -1,7 +1,9 @@
 import React from 'react';
 
 import GuessActor from './Components/GuessActor/GuessActor';
-import Home from './Components/Home';
+import Home from './Components/Home/Home';
+
+import { Nav, Navbar } from 'react-bootstrap';
 
 import {
   BrowserRouter as Router,
@@ -12,7 +14,32 @@ import {
 
 function App() {
   return (
-    <div style={{paddingLeft: "20px"}}>
+    <>
+      <Navbar bg="transparent" variant="dark" expand="lg">
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+              <Nav className="justify-content-end" style={{ width: "100%"}}>
+                <Nav.Link href="/"><h1 style={{ padding: "10px", textAlign: "left"}}>Home</h1></Nav.Link>
+                <Nav.Link href="/guessactor"><h1 style={{ padding: "10px", paddingRight: "50px", textAlign: "left"}}>GA</h1></Nav.Link>
+              </Nav>
+          </Navbar.Collapse>
+      </Navbar>
+
+      <div style={{paddingLeft: "20px"}}>
+        <Router>
+            <Switch>
+              <Route path="/guessactor">
+                <GuessActor />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+        </Router>
+      </div>
+    </>
+
+    /* <div style={{paddingLeft: "20px"}}>
       <Router>
         <div>
           <nav>
@@ -26,8 +53,8 @@ function App() {
             </ul>
           </nav>
 
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
+          { A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. }
           <Switch>
             <Route path="/guessactor">
               <GuessActor />
@@ -38,7 +65,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </div>
+    </div>*/
   );
 }
 

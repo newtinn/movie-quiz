@@ -38,7 +38,9 @@ class GAContent extends React.Component {
                         newQuestion={this.props.newQuestion} 
                         removeQuestion={this.props.removeQuestion}
                         resetScore={this.props.resetScore}
-                        nextQuestion={this.nextQuestion} /> : 
+                        nextQuestion={this.nextQuestion}
+                        score={this.props.score}
+                        cover={this.props.question.cover} /> : 
                     <GAQuestionDetails question={this.props.question} checkAnswer={this.checkAnswer} /> 
                 }
             </>

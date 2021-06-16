@@ -62,8 +62,9 @@ class GuessActor extends React.Component {
 
     render() {
         return(
-            <div>
-                <h1>Guess Actor page</h1>
+            <div className="fade-in">
+                <h1>Easy mode</h1>
+                <p>Guess the actor/actress</p>
                 <GAQuestion 
                     enqueue={this.enqueue} 
                     dequeue={this.dequeue} 

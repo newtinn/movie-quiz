@@ -51,21 +51,17 @@ class GAQuestion extends React.Component {
     render() {
         return(
             <>
-                <p>Score: {this.props.score}</p>
-                <button onClick={this.getQuestion}>Add</button>
-                <button onClick={this.removeQuestion}>Remove</button>
-                <br/>
-                <br/>
                 {this.state.questionAvailable ? <GAContent 
                                                     question={this.props.queue[0]} 
                                                     gameOver={this.props.gameOver} 
                                                     increaseScore={this.props.increaseScore}
                                                     resetScore={this.props.resetScore}
                                                     removeQuestion={this.removeQuestion} 
-                                                    newQuestion={this.getQuestion} /> 
+                                                    newQuestion={this.getQuestion}
+                                                    score={this.props.score} /> 
                                                     : 
                                                     <div class="fade-in">
-                                                        <div class="spinner-border text-dark" role="status">
+                                                        <div class="spinner-border text-light" role="status">
                                                         </div>
                                                     </div>
                                                     }
