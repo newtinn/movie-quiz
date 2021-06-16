@@ -15,7 +15,7 @@ class GAQuestionDetails extends React.Component {
     render() {
         return(
             <>
-                <HideUntilLoaded animationIn="fadeIn" durationIn="10000" Spinner={()=> 
+                <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" Spinner={()=> 
                                                             
                                                                 <div class="spinner-border text-light" role="status">
                                                                 </div>

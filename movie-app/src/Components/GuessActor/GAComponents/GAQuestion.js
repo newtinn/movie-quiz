@@ -10,7 +10,7 @@ class GAQuestion extends React.Component {
         super(props);
         this.getQuestion = this.getQuestion.bind(this);
         this.removeQuestion = this.removeQuestion.bind(this);
-        this.state = { questionAvailable: false};
+        this.state = { questionAvailable: false };
     }
 
     // getting a question
@@ -36,9 +36,13 @@ class GAQuestion extends React.Component {
 
     componentDidMount() { // onload of the component
         this._mounted = true;
-        this.getQuestion();
-        this.getQuestion();
-        this.getQuestion();
+        if (this.props.queue.length === 0) {
+            this.getQuestion();
+            this.getQuestion();
+            this.getQuestion();
+        } else {
+            this.setState({ questionAvailable: true});
+        }
         return () => this.setState({_mounted: false});
     }
 

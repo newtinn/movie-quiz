@@ -57,7 +57,7 @@ class GuessActor extends React.Component {
     resetScore() {
         var currentScore = this.state.score;
         currentScore = 0;
-        this.setState({ score: currentScore});
+        this.setState({ score: currentScore, gameOver: false});
     }
 
     render() {
