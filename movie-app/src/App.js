@@ -2,6 +2,7 @@ import React from 'react';
 
 import GuessActor from './Components/GuessActor/GuessActor';
 import Home from './Components/Home/Home';
+import GuessMovie from './Components/GuessMovie/GuessMovie';
 
 import { Nav, Navbar } from 'react-bootstrap';
 
@@ -30,6 +31,9 @@ function App() {
             <Switch>
               <Route path="/guessactor">
                 <GuessActor />
+              </Route>
+              <Route path="/guessmovie">
+                <GuessMovie />
               </Route>
               <Route path="/">
                 <Home />

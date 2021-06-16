@@ -59,6 +59,42 @@ def getActor():
 
     return {'actor': str(actor['name']), 'cover': str(cover), 'sex': str(sex)}
 
+@app.route('/getMovieAPI')
+def GuessMovie():
+
+    # opening file
+    with open('movies.txt', 'r') as f:
+        moviesList = [line.strip() for line in f]
+
+    pickedMovie = moviesList[random.randint(0,len(moviesList)-1)]
+
+    movie = ia.search_movie(pickedMovie)
+    movie = movie[0]
+    movieDup = ia.get_movie(int(movie.movieID))
+    
+    cast = movieDup['cast']
+    genre = movieDup['genre'][0]
+    year = movieDup['year']
+    movieCover = movieDup['full-size cover url']
+
+    personOneNum = random.randint(0,4)
+    personTwoNum = random.randint(0,4)
+    while (personTwoNum == personOneNum):
+        personTwoNum = random.randint(0,4)
+
+    personOne = cast[personOneNum]['name']
+    personTwo = cast[personTwoNum]['name']
+
+    personOneCover = getActorCover(ia.search_person(personOne)[0].personID)
+    personTwoCover = getActorCover(ia.search_person(personTwo)[0].personID)
+
+    print(movie['title'])
+    pickedMovie = movie['title']
+    return {'movie': pickedMovie, 'movieCover': movieCover,'actor1': personOne, 'actor2': personTwo, 'actor1Cover': personOneCover, 'actor2Cover': personTwoCover, 'genre': genre, 'year': year}
+
+    
+
+    
 
 if (__name__ == "__main__"):
     removeDuplicateLines()

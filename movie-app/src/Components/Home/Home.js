@@ -24,7 +24,7 @@ class Home extends React.Component {
                         <table style={{marginLeft: "auto", marginRight: "auto"}}>
                             <tr>
                                 <th><a href="/guessactor"><input value="Easy" type="submit" className="btn btn-info"/></a></th>
-                                <th><a><input value="Medium" type="submit" className="btn btn-info"/></a></th>
+                                <th><a href="/guessmovie"><input value="Medium" type="submit" className="btn btn-info"/></a></th>
                                 <th><a><input value="Hard" type="submit" className="btn btn-info"/></a></th>
                             </tr>
                         </table>
