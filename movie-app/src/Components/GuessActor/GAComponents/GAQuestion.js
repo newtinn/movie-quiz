@@ -10,7 +10,7 @@ class GAQuestion extends React.Component {
         super(props);
         this.getQuestion = this.getQuestion.bind(this);
         this.removeQuestion = this.removeQuestion.bind(this);
-        this.state = { questionAvailable: false };
+        this.state = { questionAvailable: false, currentQueue: [] };
     }
 
     // getting a question
@@ -21,8 +21,16 @@ class GAQuestion extends React.Component {
 
         await fetch('http://localhost:5000/getActorAPI').then(res => res.json()).then(data => {
             if (this._mounted === true) {
-                this.props.enqueue(data);
-                this.setState({ questionAvailable: true });
+                var indexCheck = this.state.currentQueue.indexOf(data.actorID);
+                if (indexCheck === -1) {
+                    var newQueue = this.state.currentQueue;
+                    newQueue.push(data.actorID);
+                    this.setState({ currentQueue: newQueue} );
+                    this.props.enqueue(data);
+                    this.setState({ questionAvailable: true });
+                } else {
+                    this.getQuestion();
+                }
             }
         }).catch((error) => this.getQuestion());
     }

@@ -33,6 +33,7 @@ def getActor():
         moviesList = [line.strip() for line in f]
 
     pickedMovie = moviesList[random.randint(0,len(moviesList)-1)]
+    #pickedMovie = moviesList[0]
 
     # getting the movie from imdb
     movieSearch = ia.search_movie(pickedMovie)
@@ -57,7 +58,7 @@ def getActor():
 
     cover = getActorCover(actor.personID)
 
-    return {'actor': str(actor['name']), 'cover': str(cover), 'sex': str(sex)}
+    return {'actor': str(actor['name']), 'cover': str(cover), 'sex': str(sex), 'actorID': actor.personID}
 
 @app.route('/getMovieAPI')
 def GuessMovie():
@@ -67,6 +68,7 @@ def GuessMovie():
         moviesList = [line.strip() for line in f]
 
     pickedMovie = moviesList[random.randint(0,len(moviesList)-1)]
+    #pickedMovie = moviesList[0]
 
     movie = ia.search_movie(pickedMovie)
     movie = movie[0]
@@ -85,12 +87,19 @@ def GuessMovie():
     personOne = cast[personOneNum]['name']
     personTwo = cast[personTwoNum]['name']
 
+    personOneID= cast[personOneNum].personID
+    personTwoID = cast[personTwoNum].personID
+
     personOneCover = getActorCover(ia.search_person(personOne)[0].personID)
     personTwoCover = getActorCover(ia.search_person(personTwo)[0].personID)
 
     print(movie['title'])
     pickedMovie = movie['title']
-    return {'movie': pickedMovie, 'movieCover': movieCover,'actor1': personOne, 'actor2': personTwo, 'actor1Cover': personOneCover, 'actor2Cover': personTwoCover, 'genre': genre, 'year': year}
+    return {'movie': pickedMovie, 'movieCover': movieCover,
+            'actor1': personOne, 'actor2': personTwo, 
+            'actor1Cover': personOneCover, 'actor2Cover': personTwoCover,
+            'actor1ID': personOneID, 'actor2ID': personTwoID, 'movieID': movie.movieID, 
+            'genre': genre, 'year': year}
 
     
 

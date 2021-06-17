@@ -10,7 +10,7 @@ class GMQuestion extends React.Component {
         super(props);
         this.getQuestion = this.getQuestion.bind(this);
         this.removeQuestion = this.removeQuestion.bind(this);
-        this.state = { questionAvailable: false };
+        this.state = { questionAvailable: false, currentQueue: [] };
     }
 
     // getting a question
@@ -21,8 +21,18 @@ class GMQuestion extends React.Component {
 
         await fetch('http://localhost:5000/getMovieAPI').then(res => res.json()).then(data => {
             if (this._mounted === true) {
-                this.props.enqueue(data);
-                this.setState({ questionAvailable: true });
+                var indexCheck = this.state.currentQueue.indexOf(data.actorID);
+
+                if (indexCheck === -1) {
+                    var newQueue = this.state.currentQueue;
+                    newQueue.push([data.actor1ID, data.actor2ID, data.movieID]); // actor1 ID, actor2 ID, movieID
+                    this.setState({ currentQueue: newQueue} );
+                    this.props.enqueue(data);
+                    this.setState({ questionAvailable: true });
+                } else {
+                    console.log("data already exists");
+                    this.getQuestion();
+                }
             }
         }).catch((error) => this.getQuestion());
     }
