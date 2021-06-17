@@ -15,12 +15,7 @@ class GMQuestionDetails extends React.Component {
     render() {
         return(
             <>
-                <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" Spinner={()=> 
-                                                            
-                                                                <div class="spinner-border text-light" role="status">
-                                                                </div>
-                                                            
-                                                                }>
+                <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" imageToLoad={this.props.question.actor1Cover && this.props.question.actor2Cover} >
                     <div id="content">
                         <img src={this.props.question.actor1Cover} alt='' style={{maxHeight: "400px", padding:"5px"}} class="img-fluid" />
                         <img src={this.props.question.actor2Cover} alt='' style={{maxHeight: "400px", padding: "5px"}} class="img-fluid" />

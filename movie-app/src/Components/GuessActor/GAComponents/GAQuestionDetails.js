@@ -15,12 +15,7 @@ class GAQuestionDetails extends React.Component {
     render() {
         return(
             <>
-                <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" Spinner={()=> 
-                                                            
-                                                                <div class="spinner-border text-light" role="status">
-                                                                </div>
-                                                            
-                                                                }>
+                <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" imageToLoad={this.props.question.cover}>
                     <div id="content">
                         <img src={this.props.question.cover} alt='' style={{maxHeight: "400px"}} class="img-fluid" />
                         <h1 style={{paddingTop: "15px"}}>Who is this {this.props.question.sex}?</h1>

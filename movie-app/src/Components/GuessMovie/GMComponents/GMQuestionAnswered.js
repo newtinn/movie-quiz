@@ -45,7 +45,7 @@ class GMQuestionAnswered extends React.Component {
         if (this.props.correct === true) {
             return(
                 <>
-                    <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" Spinner={()=> 
+                    <HideUntilLoaded animationIn="fadeInUp" imageToLoad={this.props.cover} durationIn="1000" Spinner={()=> 
                                                             
                                                             <div class="spinner-border text-light" role="status">
                                                             </div>
@@ -65,7 +65,7 @@ class GMQuestionAnswered extends React.Component {
         if (this.props.correct === false) {
             return(
                 <>
-                    <HideUntilLoaded animationIn="fadeInUp" durationIn="10000" Spinner={()=> 
+                    <HideUntilLoaded animationIn="fadeInUp" imageToLoad={this.props.cover} durationIn="1000" Spinner={()=> 
                                                             
                                                             <div class="spinner-border text-light" role="status">
                                                             </div>

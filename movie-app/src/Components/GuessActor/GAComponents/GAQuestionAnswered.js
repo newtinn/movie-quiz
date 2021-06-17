@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AnimateOnChange } from 'react-animation';
+import { HideUntilLoaded } from 'react-animation';
 
 class GAQuestionAnswered extends React.Component {
     constructor(props) {
@@ -45,26 +45,30 @@ class GAQuestionAnswered extends React.Component {
         if (this.props.correct === true) {
             return(
                 <>
-                    <div class="fade-in" id="content">
-                        <img src={this.props.cover} alt='' style={{maxHeight: "400px", paddingBottom: "10px"}} class="img-fluid" />
-                        <h2>Correct!</h2>
-                        <h2 style={{color: "#27FB6B"}}>Score: {this.props.score}</h2>
-                        <p>The answer was: {this.props.answer}.<br/>Click the button below to go to the next question. </p>
-                        <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
-                    </div>
+                    <HideUntilLoaded animationIn="fadeIn" imageToLoad={this.props.cover} durationIn="1000">
+                        <div id="content">
+                            <img src={this.props.cover} alt='' style={{maxHeight: "400px", paddingBottom: "10px"}} class="img-fluid" />
+                            <h2>Correct!</h2>
+                            <h2 style={{color: "#27FB6B"}}>Score: {this.props.score}</h2>
+                            <p>The answer was: {this.props.answer}.<br/>Click the button below to go to the next question. </p>
+                            <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
+                        </div>
+                    </HideUntilLoaded>
                 </>
             );
         }
         if (this.props.correct === false) {
             return(
                 <>
-                    <div class="fade-in" id="content">
-                        <img src={this.props.cover} alt='' style={{maxHeight: "400px", paddingBottom: "10px"}} class="img-fluid" />
-                        <h2>Incorrect!<br/>The answer was {this.props.answer}.</h2>
-                        <h2 style={{color: "#FF5A5F"}}>Score: {this.props.score}</h2>
-                        <p>To play again press the button below.</p>
-                        <input type="submit" value="Restart" class="btn btn-danger" onClick={this.contentFadeOut} />
-                    </div>
+                    <HideUntilLoaded animationIn="fadeIn" imageToLoad={this.props.cover} durationIn="1000">
+                        <div class="fade-in" id="content">
+                            <img src={this.props.cover} alt='' style={{maxHeight: "400px", paddingBottom: "10px"}} class="img-fluid" />
+                            <h2>Incorrect!<br/>The answer was {this.props.answer}.</h2>
+                            <h2 style={{color: "#FF5A5F"}}>Score: {this.props.score}</h2>
+                            <p>To play again press the button below.</p>
+                            <input type="submit" value="Restart" class="btn btn-danger" onClick={this.contentFadeOut} />
+                        </div>
+                    </HideUntilLoaded>
                 </>
             );
         }
