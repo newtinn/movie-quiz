@@ -1,9 +1,10 @@
 from flask import Flask
-from flask_cors import CORS
+from flask.helpers import send_from_directory
+from flask_cors import CORS, cross_origin
 import imdb
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='')
 CORS(app)
 
 ia = imdb.IMDb()
@@ -26,6 +27,7 @@ def getActorCover(id):
     return cover
 
 @app.route('/getActorAPI')
+@cross_origin()
 def getActor():
 
     # opening file
@@ -61,6 +63,7 @@ def getActor():
     return {'actor': str(actor['name']), 'cover': str(cover), 'sex': str(sex), 'actorID': actor.personID}
 
 @app.route('/getMovieAPI')
+@cross_origin()
 def GuessMovie():
 
     # opening file
@@ -101,9 +104,10 @@ def GuessMovie():
             'actor1ID': personOneID, 'actor2ID': personTwoID, 'movieID': movie.movieID, 
             'genre': genre, 'year': year}
 
-    
-
-    
+@app.route('/')
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if (__name__ == "__main__"):
     removeDuplicateLines()
