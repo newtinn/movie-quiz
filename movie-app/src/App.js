@@ -21,7 +21,8 @@ function App() {
           <Navbar.Collapse>
               <Nav className="justify-content-end" style={{ width: "100%"}}>
                 <Nav.Link href="/"><h1 style={{ padding: "10px", textAlign: "left"}}>Home</h1></Nav.Link>
-                <Nav.Link href="/guessactor"><h1 style={{ padding: "10px", paddingRight: "50px", textAlign: "left"}}>GA</h1></Nav.Link>
+                <Nav.Link href="/"><h1 style={{ padding: "10px", textAlign: "left"}}>About</h1></Nav.Link>
+                <Nav.Link href="/"><h1 style={{ padding: "10px", textAlign: "left"}}>Contact</h1></Nav.Link>
               </Nav>
           </Navbar.Collapse>
       </Navbar>

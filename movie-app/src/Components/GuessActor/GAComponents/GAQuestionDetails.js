@@ -21,6 +21,10 @@ class GAQuestionDetails extends React.Component {
                         <h1 style={{paddingTop: "15px"}}>Who is this {this.props.question.sex}?</h1>
                         <input type="text" id="userAnswer" className="text-line" placeholder="Type your answer here..." />
                         <br/><br/><input type="submit" value="Submit" className="btn btn-primary" onClick={this.fadeContentOut && this.props.checkAnswer} />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p></p>
                     </div>
                 </HideUntilLoaded>
             </>

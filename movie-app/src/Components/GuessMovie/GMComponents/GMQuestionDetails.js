@@ -22,6 +22,10 @@ class GMQuestionDetails extends React.Component {
                         <h3 style={{paddingTop: "15px"}}>What {this.props.question.genre} movie, released in {this.props.question.year},<br/>has both {this.props.question.actor1} and {this.props.question.actor2} been in?</h3>
                         <input type="text" id="userAnswer" className="text-line" placeholder="Type your answer here..." />
                         <br/><br/><input type="submit" value="Submit" className="btn btn-primary" onClick={this.fadeContentOut && this.props.checkAnswer} />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p></p>
                     </div>
                 </HideUntilLoaded>
             </>
