@@ -1,11 +1,11 @@
 from flask import Flask
-from flask_cors import CORS
+#from flask_cors import CORS
 import imdb
 import random
 import datetime
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 
 now = datetime.datetime.now()
 
