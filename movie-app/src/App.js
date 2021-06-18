@@ -3,7 +3,6 @@ import React from 'react';
 import GuessActor from './Components/GuessActor/GuessActor';
 import Home from './Components/Home/Home';
 import GuessMovie from './Components/GuessMovie/GuessMovie';
-import SixDegrees from './Components/SixDegrees/sixdegrees';
 
 import { Nav, Navbar } from 'react-bootstrap';
 
@@ -36,9 +35,6 @@ function App() {
               </Route>
               <Route path="/guessmovie">
                 <GuessMovie />
-              </Route>
-              <Route path="/sixdegrees">
-                <SixDegrees />
               </Route>
               <Route path="/">
                 <Home />
