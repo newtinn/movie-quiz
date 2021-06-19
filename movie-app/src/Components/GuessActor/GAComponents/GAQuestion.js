@@ -19,7 +19,7 @@ class GAQuestion extends React.Component {
             this.setState({ questionAvailable: false});
         }
 
-        await fetch('http://localhost:5000/getActorAPI').then(res => res.json()).then(data => {
+        await fetch('https://bigfatmoviequiz.herokuapp.com/getActorAPI').then(res => res.json()).then(data => {
             if (this._mounted === true) {
                 var indexCheck = this.state.currentQueue.indexOf(data.actorID);
                 if (indexCheck === -1) {
