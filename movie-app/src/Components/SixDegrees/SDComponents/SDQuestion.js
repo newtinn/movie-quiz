@@ -1,9 +1,9 @@
 import React from 'react';
 import { ClipLoader } from 'react-spinners';
 
-import GMContent from './GMContent';
+import SDContent from './SDContent';
 
-class GMQuestion extends React.Component {
+class SDQuestion extends React.Component {
     _mounted = false;
 
     constructor(props) {
@@ -19,18 +19,16 @@ class GMQuestion extends React.Component {
             this.setState({ questionAvailable: false});
         }
 
-        await fetch('https://bigfatmoviequiz.herokuapp.com/getMovieAPI').then(res => res.json()).then(data => {
+        await fetch('https://bigfatmoviequiz.herokuapp.com/sixdegreesAPI').then(res => res.json()).then(data => {
             if (this._mounted === true) {
-                var indexCheck = this.state.currentQueue.indexOf(data.actorID);
-
+                var indexCheck = this.state.currentQueue.indexOf(data.answer);
                 if (indexCheck === -1) {
                     var newQueue = this.state.currentQueue;
-                    newQueue.push([data.actor1ID, data.actor2ID, data.movieID]); // actor1 ID, actor2 ID, movieID
+                    newQueue.push(data.answer);
                     this.setState({ currentQueue: newQueue} );
                     this.props.enqueue(data);
                     this.setState({ questionAvailable: true });
                 } else {
-                    console.log("data already exists");
                     this.getQuestion();
                 }
             }
@@ -63,7 +61,7 @@ class GMQuestion extends React.Component {
     render() {
         return(
             <>
-                {this.state.questionAvailable ? <GMContent 
+                {this.state.questionAvailable ? <SDContent 
                                                     question={this.props.queue[0]} 
                                                     gameOver={this.props.gameOver} 
                                                     increaseScore={this.props.increaseScore}
@@ -82,4 +80,4 @@ class GMQuestion extends React.Component {
     }
 }
 
-export default GMQuestion;
+export default SDQuestion;

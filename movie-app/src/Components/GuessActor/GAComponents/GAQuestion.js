@@ -56,8 +56,6 @@ class GAQuestion extends React.Component {
 
     componentWillUnmount() {
         this._mounted = false;
-        console.log(this._mounted);
-        console.log("changed page to home");
     }
 
     render() {

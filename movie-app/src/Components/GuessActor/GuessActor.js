@@ -20,9 +20,7 @@ class GuessActor extends React.Component {
             var currentQueue = this.state.queue;
             currentQueue.push(questionToAdd);
             this.setState({ queue: currentQueue });
-            console.log(this.state.queue);
-        } else {
-            console.log("queue is full!");
+            //console.log(this.state.queue);
         }
     }
     dequeue() {
@@ -30,7 +28,7 @@ class GuessActor extends React.Component {
             var currentQueue = this.state.queue;
             currentQueue.shift();
             this.setState({ queue: currentQueue });
-            console.log(this.state.queue);
+            //console.log(this.state.queue);
         }
     }
     checkEmpty() {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import GMQuestion from './GMComponents/GMQuestion';
+import SDQuestion from './SDComponents/SDQuestion';
 
-class GuessMovie extends React.Component {
+class SixDegrees extends React.Component {
     constructor(props) {
         super(props);
         this.state = { queue: [] , queueMaxSize: 3, question: null, score: 0, gameOver: false };
@@ -20,7 +20,6 @@ class GuessMovie extends React.Component {
             var currentQueue = this.state.queue;
             currentQueue.push(questionToAdd);
             this.setState({ queue: currentQueue });
-            //console.log(this.state.queue);
         }
     }
     dequeue() {
@@ -28,7 +27,6 @@ class GuessMovie extends React.Component {
             var currentQueue = this.state.queue;
             currentQueue.shift();
             this.setState({ queue: currentQueue });
-            //console.log(this.state.queue);
         }
     }
     checkEmpty() {
@@ -61,9 +59,9 @@ class GuessMovie extends React.Component {
     render() {
         return(
             <div className="fade-in">
-                <h1>Medium mode</h1>
-                <p>Guess the movie that two actors/actresses have been in</p>
-                <GMQuestion 
+                <h1>Hard mode</h1>
+                <p>Six degrees of separation</p>
+                <SDQuestion 
                     enqueue={this.enqueue} 
                     dequeue={this.dequeue} 
                     checkEmpty={this.checkEmpty} 
@@ -79,4 +77,4 @@ class GuessMovie extends React.Component {
     }
 }
 
-export default GuessMovie;
+export default SixDegrees;
