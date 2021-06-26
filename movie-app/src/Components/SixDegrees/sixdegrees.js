@@ -66,12 +66,13 @@ class SixDegrees extends React.Component {
                     dequeue={this.dequeue} 
                     checkEmpty={this.checkEmpty} 
                     checkFull={this.checkFull} 
-                    queue={this.state.queue} 
+                    queue={this.state.queue}
+                    queueMaxSize={this.state.queueMaxSize} 
                     gameOver={this.state.gameOver} 
                     increaseScore={this.increaseScore}
                     resetScore={this.resetScore}
                     score={this.state.score} 
-                    controller={this.controller} />
+                    controller={this.props.controller} />
             </div>
         );
     }

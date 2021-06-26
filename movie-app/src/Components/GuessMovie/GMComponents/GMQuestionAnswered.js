@@ -57,6 +57,7 @@ class GMQuestionAnswered extends React.Component {
                             <h2 style={{color: "#27FB6B"}}>Score: {this.props.score}</h2>
                             <p>The answer was: {this.props.answer}.<br/>Click the button below to go to the next question. </p>
                             <input type="submit" value="Next Question" class="btn btn-primary" onClick={this.contentFadeOut} />
+                            <p style={{paddingBottom: "150px"}}></p>
                         </div>
                     </HideUntilLoaded>
                 </>
@@ -77,6 +78,7 @@ class GMQuestionAnswered extends React.Component {
                             <h2 style={{color: "#FF5A5F"}}>Score: {this.props.score}</h2>
                             <p>To play again press the button below.</p>
                             <input type="submit" value="Restart" class="btn btn-danger" onClick={this.contentFadeOut} />
+                            <p style={{paddingBottom: "150px"}}></p>
                         </div>
                     </HideUntilLoaded>
                 </>

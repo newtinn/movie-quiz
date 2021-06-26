@@ -5,7 +5,7 @@ import imdb
 import random
 import datetime
 
-app = Flask(__name__, static_folder='./builds/build 1', static_url_path='/')
+app = Flask(__name__, static_folder='./builds/build major 1.3', static_url_path='/') # only build for testing
 CORS(app)
 
 ia = imdb.IMDb()
@@ -46,7 +46,7 @@ def getActor():
     actor = movieRetreive['cast'][random.randint(0,2)]
     '''for i in range(0, 4):
         print(movieRetreive['cast'][i])'''
-    print(actor)
+    #print(actor)
     sex=""
 
     person = ia.get_person(actor.personID)
@@ -98,7 +98,7 @@ def GuessMovie():
     personOneCover = getActorCover(ia.search_person(personOne)[0].personID)
     personTwoCover = getActorCover(ia.search_person(personTwo)[0].personID)
 
-    print(movie['title'])
+    #print(movie['title'])
     pickedMovie = movie['title']
     return {'movie': pickedMovie, 'movieCover': movieCover,
             'actor1': personOne, 'actor2': personTwo, 
@@ -159,7 +159,7 @@ def sixdegrees():
     movieIndex = random.randint(0,len(films)-1)
 
     currentMovie = films[movieIndex]
-    print(currentMovie['title'])
+    #print(currentMovie['title'])
     movie = ia.get_movie(currentMovie.movieID)
     cast = movie.get('cast')
     topActors = 3
@@ -179,11 +179,11 @@ def sixdegrees():
     personTwoFilms = []
     #print(actors)
     numPick = random.randint(0,len(actors)-1)
-    print(actors[numPick])
+    #print(actors[numPick])
     if (len(actors)-1 > 0):
         personTwo = actors[numPick]
         personTwoRole = personTwo.currentRole
-        print(personTwo, " ### ", personTwoRole)
+        #print(personTwo, " ### ", personTwoRole)
 
         # getting information
         series = ia.get_movie(currentMovie.movieID)
@@ -257,7 +257,7 @@ def sixdegrees():
         makeQuestion(personTwo['name'])
     else:
         print("wrong")'''
-    print("returned")
+    #print("returned")
     #print(question)
 
     # showing the link for movie cover

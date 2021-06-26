@@ -5,6 +5,7 @@ import SDContent from './SDContent';
 
 class SDQuestion extends React.Component {
     _mounted = false;
+    controller = new AbortController();
 
     constructor(props) {
         super(props);
@@ -19,7 +20,7 @@ class SDQuestion extends React.Component {
             this.setState({ questionAvailable: false});
         }
 
-        await fetch('https://bigfatmoviequiz.herokuapp.com/sixdegreesAPI').then(res => res.json()).then(data => {
+        await fetch('https://bigfatmoviequiz.herokuapp.com/sixdegreesAPI', { signal: this.props.controller.signal }).then(res => res.json()).then(data => {
             if (this._mounted === true) {
                 var indexCheck = this.state.currentQueue.indexOf(data.answer);
                 if (indexCheck === -1) {
@@ -32,7 +33,11 @@ class SDQuestion extends React.Component {
                     this.getQuestion();
                 }
             }
-        }).catch((error) => this.getQuestion());
+        }).catch((error) => {
+            if (error.name !== "AbortError") {
+                this.getQuestion();
+            }
+        });
     }
 
     removeQuestion() {
@@ -55,6 +60,7 @@ class SDQuestion extends React.Component {
     }
 
     componentWillUnmount() {
+        this.controller.abort();
         this._mounted = false;
     }
 
@@ -70,8 +76,10 @@ class SDQuestion extends React.Component {
                                                     newQuestion={this.getQuestion}
                                                     score={this.props.score} /> 
                                                     : 
-                                                    <div class="fade-in">
-                                                        <div class="spinner-border text-light" role="status">
+                                                    <div className="contentBox">
+                                                        <div class="fade-in">
+                                                            <div class="spinner-border text-light" role="status">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     }

@@ -19,7 +19,7 @@ class GAQuestion extends React.Component {
             this.setState({ questionAvailable: false});
         }
 
-        await fetch('https://bigfatmoviequiz.herokuapp.com/getActorAPI').then(res => res.json()).then(data => {
+        await fetch('https://bigfatmoviequiz.herokuapp.com/getActorAPI', { signal: this.props.controller.signal }).then(res => res.json()).then(data => {
             if (this._mounted === true) {
                 var indexCheck = this.state.currentQueue.indexOf(data.actorID);
                 if (indexCheck === -1) {
@@ -32,7 +32,11 @@ class GAQuestion extends React.Component {
                     this.getQuestion();
                 }
             }
-        }).catch((error) => this.getQuestion());
+        }).catch((error) => {
+            if (error.name !== "AbortError") {
+                this.getQuestion();
+            }
+        });
     }
 
     removeQuestion() {
@@ -43,6 +47,7 @@ class GAQuestion extends React.Component {
     }
 
     componentDidMount() { // onload of the component
+        
         this._mounted = true;
         if (this.props.queue.length === 0) {
             this.getQuestion();
@@ -51,10 +56,10 @@ class GAQuestion extends React.Component {
         } else {
             this.setState({ questionAvailable: true});
         }
-        return () => this.setState({_mounted: false});
     }
 
     componentWillUnmount() {
+        //this.controller.abort();
         this._mounted = false;
     }
 
@@ -70,8 +75,10 @@ class GAQuestion extends React.Component {
                                                     newQuestion={this.getQuestion}
                                                     score={this.props.score} /> 
                                                     : 
-                                                    <div class="fade-in">
-                                                        <div class="spinner-border text-light" role="status">
+                                                    <div className="contentBox">
+                                                        <div class="fade-in">
+                                                            <div class="spinner-border text-light" role="status">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     }

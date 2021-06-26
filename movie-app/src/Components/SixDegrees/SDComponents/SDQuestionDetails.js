@@ -25,7 +25,7 @@ class SDQuestionDetails extends React.Component {
                         <br/>
                         <br/>
                         <br/>
-                        <p></p>
+                        <p style={{paddingBottom: "150px"}}></p>
                     </div>
                 </HideUntilLoaded>
             </>
